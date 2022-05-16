@@ -10,7 +10,7 @@ import "fmt"
 
 /// Set 实现了由哈希表支持的通用集合数据结构。
 //它不是线程安全的。
-//// type comparable interface{ comparable }
+//// type comparable interface{ comparable }  类型可比较接口
 /*
 // 可比较是由所有可比较类型实现的接口
 // (布尔值、数字、字符串、指针、通道、可比较类型的数组，
@@ -61,7 +61,7 @@ func MakeString(a string) *Mystring {
 	}
 	g += 1
 	return &Mystring{
-		Id:    g,
+		Id:    g, /// 相当于 链表的 ID
 		Value: a,
 	}
 }

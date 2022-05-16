@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+///// 对interface的泛型限制，可以用作类型参数
 type Number interface {
 	int | float64
 }

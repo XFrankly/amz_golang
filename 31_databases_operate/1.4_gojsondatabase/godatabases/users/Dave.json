@@ -1,0 +1,12 @@
+{
+	"Name": "Dave",
+	"Age": 28,
+	"Contact": "9832916",
+	"Company": "New Tech",
+	"Address": {
+		"City": "Asia",
+		"State": "Online",
+		"Country": "EU",
+		"Pincode": 230082
+	}
+}

@@ -2,6 +2,9 @@ package main
 
 import "fmt"
 
+/*
+单链表 及其反转
+*/
 type Node struct {
 	Data int   // 包含数据的整数类型
 	Next *Node // 保存下一个节点的内存地址 next 字段
