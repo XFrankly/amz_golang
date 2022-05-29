@@ -1,7 +1,5 @@
 package main
 
-// "github.com/jcelliott/lumber"  /// 创建记录器
-
 /*
 初始化创建 jsondatabase
 go mod init gojsondatabase
