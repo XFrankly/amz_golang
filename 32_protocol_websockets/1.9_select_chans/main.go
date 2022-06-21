@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"strings"
 	"sync"
@@ -84,4 +85,18 @@ func main() {
 	ms2 := MakeNewStr("world.")
 	fmt.Println(ms1.GetLower(), ms1.GetUpper())
 	fmt.Println(ms2.GetLower(), ms2.GetUpper())
+
+	var mi = make(map[string]interface{})
+	mi["a"] = "adwdaw"
+	vv := mi["a"]
+	fmt.Printf("%T, %s\n", vv, vv)
+
+	ssvv := fmt.Sprintf("%s", vv)
+	fmt.Println(ssvv)
+
+	s1, e1 := json.Marshal(vv)
+	if e1 != nil {
+		return
+	}
+	fmt.Println(string(s1), s1)
 }
