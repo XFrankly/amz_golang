@@ -9,6 +9,11 @@ import (
 	"strings"
 )
 
+type Tasks struct {
+	ClientParam *src.RequestsHeaders
+	ClientConn  *src.HttpClientHandler
+}
+
 type AuthError error
 
 func AuthErrors(msg string) *AuthError {
@@ -54,7 +59,8 @@ func (rc *RestConnection) Auth(user string, passwd string) *error {
 		"username": user,
 		"password": passwd,
 	}
-	rst := http.Post(h1+rc.token_path, "application/json", strings.NewReader(payload))
+	bodys := strings.NewReader(payload)
+	rst := http.Post(h1+rc.token_path, "application/json", bodys)
 }
 
 func main() {

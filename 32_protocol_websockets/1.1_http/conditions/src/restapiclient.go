@@ -3,6 +3,7 @@ package src
 import (
 	"conditions/settings"
 	"fmt"
+
 	//"io/ioutil"
 	"net/http"
 	//"net/http/httputil"
@@ -22,6 +23,7 @@ func RequestsHeaderController(host string, port int, protocol string) *RequestsH
 	return s
 }
 
+// ClientConn.Client.Do(req)
 func ClientConnectionControl(AuthToken string, ContentType string) *HttpClientHandler {
 	// 构造客户端 可 设置 请求头
 	// 绑定 客户端， 调用头，参数
