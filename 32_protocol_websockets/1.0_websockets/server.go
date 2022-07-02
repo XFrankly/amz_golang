@@ -34,7 +34,7 @@ func handleWebsocketEchoMessage(ws *websocket.Conn, e Event) error {
 	defer tr.Finish()
 	tr.LazyPrintf("Got event %v\n", e)
 
-	// Echo the event back as JSON
+	// Echo the event back as JSON ,只收Event x y {"x":12, "y":220, "z":21.2}
 	err := websocket.JSON.Send(ws, e)
 	if err != nil {
 		return fmt.Errorf("Can't send: %s", err.Error())
@@ -48,7 +48,9 @@ func websocketEchoConnection(ws *websocket.Conn) {
 	log.Printf("Client connected from %s", ws.RemoteAddr())
 	for {
 		var event Event
+		//接受格式 {"hello":"world"}， {"x":2,"y":110}
 		err := websocket.JSON.Receive(ws, &event)
+		fmt.Printf("event rec:%+v, err:%+v\n", event, err)
 		if err != nil {
 			log.Printf("Receive failed: %s; closing connection...", err.Error())
 			if err = ws.Close(); err != nil {
