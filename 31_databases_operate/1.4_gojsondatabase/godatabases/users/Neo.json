@@ -1,0 +1,12 @@
+{
+	"Name": "Neo",
+	"Age": 24,
+	"Contact": "9832917",
+	"Company": "New Tech",
+	"Address": {
+		"City": "Asia",
+		"State": "Remote",
+		"Country": "Asia",
+		"Pincode": 230004
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"Name": "Tony",
+	"Age": 31,
+	"Contact": "9832915",
+	"Company": "New Tech",
+	"Address": {
+		"City": "U.S.A",
+		"State": "Online",
+		"Country": "EU",
+		"Pincode": 230031
+	}
+}

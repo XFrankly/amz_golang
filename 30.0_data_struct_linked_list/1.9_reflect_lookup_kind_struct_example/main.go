@@ -10,7 +10,7 @@ import (
 )
 
 /*
-Kind 表示 Type 表示的特定类型的类型。零种类不是有效种类。
+Kind 表示 Type 表示的特定类型的类型。零类型不是有效类型。
 */
 
 func kindExample() {

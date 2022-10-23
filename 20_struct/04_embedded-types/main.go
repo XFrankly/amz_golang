@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+//继承
 type person struct {
 	First string
 	Last  string
