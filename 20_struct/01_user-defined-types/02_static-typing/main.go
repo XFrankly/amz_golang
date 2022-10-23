@@ -9,7 +9,7 @@ func main() {
 	myAge = 44
 	fmt.Printf("%T %v \n", myAge, myAge)
 
-	var yourAge int  // 推荐做法
+	var yourAge int // 推荐做法
 	yourAge = 29
 	fmt.Printf("%T %v \n", yourAge, yourAge)
 

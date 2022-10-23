@@ -1,11 +1,17 @@
+# what is this resp
+    its about exercise of golang, make sone node for that.
+ 
+ 
+![img](./orzs.png)  
+
 # GolangTraining
 Fork from GolangTraining
 Training and exercise for Golang (go language)
 
 
 # format
-    良好的代码示例 和 格式说明。
+    go code case and example
 
 
 # context
-    语言基础功能和 功能扩展演示等
+    golang language base funcation and expand 

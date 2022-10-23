@@ -57,6 +57,6 @@ func conn_tcp_server() {
 	}
 }
 
-// func main() {
-// 	conn_tcp_server()
-// }
+func main() {
+	conn_tcp_server()
+}

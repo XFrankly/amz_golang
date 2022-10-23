@@ -12,33 +12,34 @@ type vehicle struct {
 
 type car struct {
 	vehicle //嵌入式结构体，也就是继承自 vehicle
-	Wheels int
-	Doors  int
+	Wheels  int
+	Doors   int
 }
 
 type plane struct {
 	vehicle //嵌入式结构体，也就是继承自 vehicle
-	Jet bool
+	Jet     bool
 }
 
 type boat struct {
-	vehicle  //嵌入式结构体，也就是继承自 vehicle，
-	Length int
+	vehicle //嵌入式结构体，也就是继承自 vehicle，
+	Length  int
 }
 
 func main() {
-	prius := car{}
-	tacoma := car{}
-	bmw528 := car{}
-	boeing747 := plane{}
-	boeing757 := plane{}
-	boeing767 := plane{}
-	sanger := boat{}
-	nautique := boat{}
-	malibu := boat{}
+	v := vehicle{Seats: 4, Color: "red"}
+	prius := car{vehicle: v}
+	tacoma := car{vehicle: v}
+	bmw528 := car{vehicle: v}
+	boeing747 := plane{vehicle: v}
+	boeing757 := plane{vehicle: v}
+	boeing767 := plane{vehicle: v}
+	sanger := boat{vehicle: v}
+	nautique := boat{vehicle: v}
+	malibu := boat{vehicle: v}
 	rides := []vehicles{prius, tacoma, bmw528, boeing747, boeing757, boeing767, sanger, nautique, malibu}
 
 	for key, value := range rides {
-		fmt.Println(key, " - ", value)
+		fmt.Printf("k:%v - %v\n", key, value)
 	}
 }
