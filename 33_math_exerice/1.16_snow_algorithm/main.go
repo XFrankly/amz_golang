@@ -7,6 +7,9 @@ import (
 	"time"
 )
 
+/*
+雪花算法 用以生产 伪随机数字 序号
+*/
 var (
 	WORKER_ID_BITS int64 = 4
 	SEQUENCE_BITS  int64 = 5
