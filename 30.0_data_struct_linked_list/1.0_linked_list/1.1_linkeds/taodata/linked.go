@@ -27,9 +27,10 @@ var (
 )
 
 type node struct {
-	number int
-	prev   *node
-	next   *node
+	number  int
+	yaobian [][]int
+	prev    *node
+	next    *node
 }
 
 type dlist struct {
@@ -59,9 +60,9 @@ func (this *dlist) lesseq(n *node) (int, *node) {
 	return this.lens - 1, nil
 }
 
-// / 空链表
+// 判断是否空链表
 func (this *dlist) newNodeList(n *node) bool {
-	////
+
 	if this.lens == 0 {
 		this.head = n
 		this.tail = n
@@ -77,7 +78,7 @@ func (this *dlist) newNodeList(n *node) bool {
 
 // 头部添加 节点
 func (this *dlist) pushHead(n *node) bool {
-	//
+
 	if this.lens == 0 {
 		return this.newNodeList(n)
 	} else {
@@ -91,9 +92,9 @@ func (this *dlist) pushHead(n *node) bool {
 
 }
 
-// / 添加尾部节点
+// 添加尾部节点
 func (this *dlist) append(n *node) bool {
-	///
+
 	if this.lens == 0 {
 		return this.newNodeList(n)
 	} else {
@@ -108,7 +109,7 @@ func (this *dlist) append(n *node) bool {
 
 // 有序插入
 func (this *dlist) pushback(n *node) bool {
-	///
+
 	if n == nil {
 		return false
 	}
@@ -145,6 +146,8 @@ func (this *dlist) display() []int {
 	t := 0
 	// Logg.Println(node.number)
 	for node != nil {
+
+		Logg.Println(node.number, node.yaobian)
 		numbs = append(numbs, node.number)
 		t += 1
 		if t >= this.lens {
@@ -152,35 +155,35 @@ func (this *dlist) display() []int {
 		}
 
 		node = node.next
-		// Logg.Println(node.number)
 	}
 
 	fmt.Println("length:", this.lens)
 	return numbs
 }
-func main() {
-	dlist := makeDlist()
-	slit := []int{9, 2, 5, 6, 7, 2, 6, 10, 3}
-	for _, i := range slit {
-		node := &node{number: i}
-		// node.prev = node
-		// node.next = node
-		dlist.pushback(node)
-	}
 
-	dlist.display()
-	Logg.Println()
-	dlist.pushback(&node{number: 123})
-	dlist.display()
+// func main() {
+// 	dlist := makeDlist()
+// 	slit := []int{9, 2, 5, 6, 7, 2, 6, 10, 3}
+// 	for _, i := range slit {
+// 		node := &node{number: i}
+// 		// node.prev = node
+// 		// node.next = node
+// 		dlist.pushback(node)
+// 	}
 
-	Logg.Println()
-	dlist.pushback(&node{number: 323})
-	dlist.display()
-	Logg.Println()
-	dlist.pushback(&node{number: 0})
-	dlist.display()
-	Logg.Println()
-	dlist.pushback(&node{number: 1})
-	dlist.display()
-	Logg.Println()
-}
+// 	dlist.display()
+// 	Logg.Println()
+// 	dlist.pushback(&node{number: 123})
+// 	dlist.display()
+
+// 	Logg.Println()
+// 	dlist.pushback(&node{number: 323})
+// 	dlist.display()
+// 	Logg.Println()
+// 	dlist.pushback(&node{number: 0})
+// 	dlist.display()
+// 	Logg.Println()
+// 	dlist.pushback(&node{number: 1})
+// 	dlist.display()
+// 	Logg.Println()
+// }

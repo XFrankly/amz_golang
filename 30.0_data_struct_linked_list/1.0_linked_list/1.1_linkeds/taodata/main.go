@@ -31,7 +31,6 @@ func DoGua(env string, save bool) int {
 	ind := strconv.Itoa(theNob)
 	distriNumb := distriNumbs[ind]
 
-	// fmt.Printf("\n%v\n", result)
 	fmt.Println("已测算此卦: 每一万人 与你相同的有 ", distriNumb, " 人")
 
 	if save {
@@ -43,7 +42,6 @@ func DoGua(env string, save bool) int {
 		fileNames := strings.Replace(fileName, " ", "", -1)
 		fileNames = strings.Replace(fileNames, ":", ".", -1)
 		fileNames = strings.Replace(fileNames, "-", ".", -1) + ".txt"
-		//.Replace(fileName"-", ".").replace(":", ".")
 		f, err := os.Create(fileNames)
 		if err != nil {
 			msg := fmt.Sprintf("Can not write data:%v\n", err)
@@ -52,9 +50,6 @@ func DoGua(env string, save bool) int {
 		f.WriteString(fileNames + "\n联系作者:hahamx@foxmail.com" + "\n")
 		f.WriteString(result)
 		f.Close()
-		// with open(fileNames, "w", encoding="utf8") as f:
-		// 	f.write(fileName + "\n联系作者:hahamx@foxmail.com" + "\n")
-		// 	f.write(result)
 		fmt.Println("已保存:", fileNames)
 	}
 

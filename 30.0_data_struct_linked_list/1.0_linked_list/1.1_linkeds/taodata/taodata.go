@@ -27,14 +27,14 @@ var (
 	}
 )
 
-type IChing struct {
+type ICh struct {
 	Num    int
 	Warn   string
 	AnySis map[int]string
 }
 
-func NewICin() *IChing {
-	ic := &IChing{
+func NewICin() *ICh {
+	ic := &ICh{
 		Num:    Num,
 		Warn:   Warn,
 		AnySis: AnySis,
@@ -42,7 +42,7 @@ func NewICin() *IChing {
 	return ic
 }
 
-func (ic *IChing) HowAnysis(num int) string {
+func (ic *ICh) HowAnysis(num int) string {
 	fmt.Println("朱熹解:")
 	msg := "变爻:" + string(num) + "\n"
 	if !AllowNums[num] {
@@ -56,7 +56,7 @@ func (ic *IChing) HowAnysis(num int) string {
 }
 
 // 对比两个列表是否相同
-func (ic *IChing) CompSlice(firstS, SecSlice []int) bool {
+func (ic *ICh) CompSlice(firstS, SecSlice []int) bool {
 	if len(firstS) != len(SecSlice) {
 		return false
 	}
@@ -69,7 +69,7 @@ func (ic *IChing) CompSlice(firstS, SecSlice []int) bool {
 }
 
 // 显示 卦像
-func (ic *IChing) CommonType(array []int) {
+func (ic *ICh) CommonType(array []int) {
 
 	for _, g := range array {
 		if g == 0 { // # 0 表示阴爻
@@ -85,7 +85,7 @@ func (ic *IChing) CommonType(array []int) {
 }
 
 //解释文本
-func (ic *IChing) CommonText(arrays []int) (string, int) {
+func (ic *ICh) CommonText(arrays []int) (string, int) {
 	if len(arrays) != ic.Num {
 		return ic.Warn + fmt.Sprintf("%v", arrays), 0
 	}

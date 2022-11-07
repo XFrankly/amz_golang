@@ -11,8 +11,9 @@ import (
 
 /*
 步骤
-1， 产生49个数
-2， 随机 分成 两组， 为了可以产生正常的 三变 运算，最小12
+1， 产生49个数，大衍之数为 54,实际参与计算的为 七七四十九
+2， 随机 分成 两组（随机的方法非常重要，可以影响甚至决定结果），
+	 为了可以产生正常的 三变 运算，最小12
 	也就是说范围是：天 12 ~ 37， 地 37 ~ 12
 
 3， 从 天，地 随机选择一侧 取出一个 作为 人
@@ -51,15 +52,14 @@ _______....大吉大利....___ ___
 )
 
 type DataTao struct {
-	DefMean  map[int]string
-	DefValue map[int]string //
-	GuaData  []int
-	//format print
-	Indent     int
-	Env        int
-	Total      int
-	PrintLevel int
-	Coordinate map[int]string
+	DefMean    map[int]string // 卦象坐标名称
+	DefValue   map[int]string // 卦象坐标值 4个
+	GuaData    []int          // 卦象的 6爻初始值
+	Indent     int            // 格式化输出间隔
+	Env        int            // 影响偏差，Env 把一年分为 3个部分，每个部分4个月，这个值可以影响天地分开的比例，自己随意
+	Total      int            // 大衍之数 个数
+	PrintLevel int            // 计算过程显示控制，如果为 1 则显示
+	Coordinate map[int]string //卦象坐标的 爻，古称
 }
 
 /*
@@ -69,7 +69,7 @@ type DataTao struct {
 */
 func MakeNewDataTao(env string, indent, total int) *DataTao {
 	envNum := map[string]int{"A": 1, "B": 0, "C": 2}
-	guaCoor := map[int]string{6: "六", 7: "七", 8: "八", 9: "九"} //# 卦象坐标值 4个
+	guaCoor := map[int]string{6: "六", 7: "七", 8: "八", 9: "九"}
 
 	var envLevel = 0
 
@@ -114,8 +114,8 @@ func (dt *DataTao) SplitNum(topNum int) int {
 		Seed 不应与任何其他 Rand 方法同时调用。
 	*/
 	rand.Seed(time.Now().UnixNano())
-	top := topNum - 12
-	sn := rand.Intn(top) + 12 // A random int in [12, 37]
+	top := topNum - 4
+	sn := rand.Intn(top) + 4 // A random int in [4, 37]
 
 	if dt.Env != 0 {
 		if dt.Env == 1 {
@@ -125,12 +125,12 @@ func (dt *DataTao) SplitNum(topNum int) int {
 		}
 
 	}
-	if sn < 12 {
-		sn = 12
+	if sn < 4 {
+		sn = 4
 	}
 
-	if sn > topNum-12 {
-		sn = topNum - 12
+	if sn > topNum-4 {
+		sn = topNum - 4
 	}
 
 	logger.Printf("outcome sn:%v with topNum:%v\n", sn, topNum)
@@ -192,9 +192,8 @@ func (dt *DataTao) DoOneYao(lis []int, sn int) []int {
 	//返回一变
 	newOrigin = append(tia, d...)
 	newOrigin = append(newOrigin, ran)
-
+	SixYao = append(SixYao, newOrigin)
 	if dt.Env == dt.PrintLevel {
-		SixYao = append(SixYao, newOrigin)
 		logger.Println("余天:", tian, "\n余地:", di, "\n变数:", newOrigin, "人才:", ran, "\n新天地:", len(tian)+len(di))
 		logger.Println("已变总数:", len(SixYao))
 	}
@@ -249,8 +248,9 @@ func (dt *DataTao) SuanGua() *dlist {
 			logger.Println(dt.Coordinate[i]+dt.DefValue[y], "\n第", i, "爻", y, dt.DefMean[y])
 		}
 		time.Sleep(time.Millisecond * 100)
-		// gua = append(gua, y)
-		ResultNodes.append(&node{number: y})
+		ResultNodes.append(&node{number: y, yaobian: SixYao})
+		//每一卦重置爻变
+		SixYao = [][]int{}
 	}
 	return ResultNodes
 }
@@ -258,7 +258,6 @@ func (dt *DataTao) SuanGua() *dlist {
 // 格式化输出
 func (dt *DataTao) FormatShow(cont string) string {
 	/*
-
 		:param cont:  需要显示的内容
 		:return:
 	*/
@@ -320,7 +319,7 @@ func (dt *DataTao) KanGua(gua []int, n int) (string, int) {
 
 // # 6爻卦象 显示原始卦象
 func (dt *DataTao) KanGuaOrigin() ([]int, int) {
-	c := "n" //# input("是否查看本卦 需要 键入 n:")
+	c := "n"
 	guas := dt.SuanGua()
 	gua := guas.display()
 	v := 0 //# 变爻次数
