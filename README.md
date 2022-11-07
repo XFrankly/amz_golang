@@ -4,8 +4,7 @@
  
 ![img](./orzs.png)  
 
-# GolangTraining
-Fork from GolangTraining
+# Golang 
 Training and exercise for Golang (go language)
 
 
