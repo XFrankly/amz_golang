@@ -43,13 +43,13 @@ func makeDlist() *dlist {
 	return &dlist{}
 }
 
-func (this *dlist) lesseq(n *node) (int, *node) {
+func (the *dlist) lesseq(n *node) (int, *node) {
 	/// 排序 大于等于目标的结点
-	if this.lens <= 0 || n == nil {
+	if the.lens <= 0 || n == nil {
 		return 0, nil
 	}
-	currentNode := this.head
-	for i := 0; i < this.lens; i++ {
+	currentNode := the.head
+	for i := 0; i < the.lens; i++ {
 		if currentNode.number >= n.number {
 			return i, currentNode
 		} else {
@@ -57,18 +57,18 @@ func (this *dlist) lesseq(n *node) (int, *node) {
 		}
 	}
 	/// 没有找到 比n 大的
-	return this.lens - 1, nil
+	return the.lens - 1, nil
 }
 
 // 判断是否空链表
-func (this *dlist) newNodeList(n *node) bool {
+func (the *dlist) newNodeList(n *node) bool {
 
-	if this.lens == 0 {
-		this.head = n
-		this.tail = n
+	if the.lens == 0 {
+		the.head = n
+		the.tail = n
 		n.prev = nil
 		n.next = nil
-		this.lens += 1
+		the.lens += 1
 		return true
 	} else {
 		Logg.Panic("not empty node list.")
@@ -77,52 +77,52 @@ func (this *dlist) newNodeList(n *node) bool {
 }
 
 // 头部添加 节点
-func (this *dlist) pushHead(n *node) bool {
+func (the *dlist) pushHead(n *node) bool {
 
-	if this.lens == 0 {
-		return this.newNodeList(n)
+	if the.lens == 0 {
+		return the.newNodeList(n)
 	} else {
-		this.head.prev = n
+		the.head.prev = n
 		n.prev = nil
-		n.next = this.head
-		this.head = n
-		this.lens += 1
+		n.next = the.head
+		the.head = n
+		the.lens += 1
 		return true
 	}
 
 }
 
 // 添加尾部节点
-func (this *dlist) append(n *node) bool {
+func (the *dlist) append(n *node) bool {
 
-	if this.lens == 0 {
-		return this.newNodeList(n)
+	if the.lens == 0 {
+		return the.newNodeList(n)
 	} else {
-		this.tail.next = n
-		n.prev = this.tail
+		the.tail.next = n
+		n.prev = the.tail
 		n.next = nil
-		this.tail = n
-		this.lens += 1
+		the.tail = n
+		the.lens += 1
 		return true
 	}
 }
 
 // 有序插入
-func (this *dlist) pushback(n *node) bool {
+func (the *dlist) pushback(n *node) bool {
 
 	if n == nil {
 		return false
 	}
-	currentNode := this.head
+	currentNode := the.head
 	if currentNode == nil {
 
-		return this.newNodeList(n)
+		return the.newNodeList(n)
 	} else {
-		inDex, insertNode := this.lesseq(n)
+		inDex, insertNode := the.lesseq(n)
 		if inDex == 0 {
-			return this.pushHead(n)
-		} else if inDex == (this.lens-1) && insertNode == nil {
-			return this.append(n)
+			return the.pushHead(n)
+		} else if inDex == (the.lens-1) && insertNode == nil {
+			return the.append(n)
 		}
 		Logg.Printf("insert at :%+v\n", inDex)
 
@@ -134,15 +134,15 @@ func (this *dlist) pushback(n *node) bool {
 		}
 
 		insertNode.prev = n
-		this.lens += 1
+		the.lens += 1
 		return true
 	}
 }
 
-func (this *dlist) display() []int {
+func (the *dlist) display() []int {
 	/// 显示链表的值
 	numbs := []int{}
-	node := this.head
+	node := the.head
 	t := 0
 	// Logg.Println(node.number)
 	for node != nil {
@@ -150,14 +150,14 @@ func (this *dlist) display() []int {
 		Logg.Println(node.number, node.yaobian)
 		numbs = append(numbs, node.number)
 		t += 1
-		if t >= this.lens {
+		if t >= the.lens {
 			break
 		}
 
 		node = node.next
 	}
 
-	fmt.Println("length:", this.lens)
+	fmt.Println("length:", the.lens)
 	return numbs
 }
 

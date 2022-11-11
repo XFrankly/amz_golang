@@ -1,11 +1,11 @@
-package taodata
+package bstdata
 
 import "fmt"
 
 var (
 	Num       = 6 //# 爻数
 	ICApp     = NewICin()
-	AllowNums = map[int]bool{
+	AllowNums = map[int]bool{ //允许的坐标
 		0: true,
 		1: true,
 		2: true,
@@ -14,7 +14,7 @@ var (
 		5: true,
 		6: true,
 	}
-	Warn = "八卦需要六爻，输入的是"
+	Warn = "八卦需要六爻，输入的是:"
 	//# 朱熹七解
 	AnySis = map[int]string{
 		0: "  六爻全不变,以本 卦卦辞占   ----- 不变 只看本卦 ",
@@ -27,6 +27,7 @@ var (
 	}
 )
 
+//解卦
 type ICh struct {
 	Num    int
 	Warn   string
@@ -55,7 +56,7 @@ func (ic *ICh) HowAnysis(num int) string {
 	return msg
 }
 
-// 对比两个列表是否相同
+// 对比两个列表是否相同 exp: [0,1,1,0,0,1]
 func (ic *ICh) CompSlice(firstS, SecSlice []int) bool {
 	if len(firstS) != len(SecSlice) {
 		return false
