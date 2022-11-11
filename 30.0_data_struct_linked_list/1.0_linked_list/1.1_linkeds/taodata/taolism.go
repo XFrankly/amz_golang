@@ -241,21 +241,6 @@ func (dt *DataTao) SuanGua() *dlist {
 	return ResultNodes
 }
 
-// 格式化输出
-func (dt *DataTao) FormatShow(cont string) string {
-	/*
-		:param cont:  需要显示的内容
-		:return:
-	*/
-	spaceStr := []string{} //{" ", dt.Indent}
-	for i := 0; i < dt.Indent; i++ {
-		spaceStr = append(spaceStr, " ")
-	}
-	msg := strings.Join(spaceStr, "") + cont
-	print(msg)
-	return msg + "\n"
-}
-
 // 转变 6 爻为 卦象后 显示卦象
 func (dt *DataTao) Common(gua []int) string {
 	/*
@@ -301,6 +286,21 @@ func (dt *DataTao) KanGua(gua []int, n int) (string, int) {
 	print(means)
 	result := guas + "\n" + means
 	return result, nob
+}
+
+// 格式化输出
+func (dt *DataTao) FormatShow(cont string) string {
+	/*
+		:param cont:  需要显示的内容
+		:return:
+	*/
+	spaceStr := []string{} //{" ", dt.Indent}
+	for i := 0; i < dt.Indent; i++ {
+		spaceStr = append(spaceStr, " ")
+	}
+	msg := strings.Join(spaceStr, "") + cont
+	print(msg)
+	return msg + "\n"
 }
 
 // # 6爻卦象 显示原始卦象
