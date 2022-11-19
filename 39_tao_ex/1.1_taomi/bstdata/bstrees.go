@@ -234,32 +234,14 @@ func (tn *TreeNode) IterCache(size int) *CacheChan {
 		if tnLeft != nil {
 			cacheCahn.Putin(tnLeft)
 			cacheCahn = IterCacheLeftNode(cacheCahn, tnLeft)
-		}
-		// for tnLeft != nil { //// 遍历左子树的左节点
-		// 	Logg.Printf("%+v\n", tnLeft)
-		// 	cacheCahn.Putin(tnLeft)
-		// 	if tnLeft == tnLeft.LeftChild {
-		// 		Logg.Printf("left child same:%v\n", tnLeft)
-		// 		break
-		// 	}
-		// 	tnLeft = tnLeft.LeftChild
-		// }
+		} 
 		Logg.Printf("%+v\n", tn)
 		cacheCahn.Putin(tn)
 		tnRight := tn.HasRightChild() // 右子树
 		if tnRight != nil {
 			cacheCahn.Putin(tnRight)
 			cacheCahn = IterCacheRightNode(cacheCahn, tnRight)
-		}
-		// for tnRight != nil {
-		// 	tn.CachePuts(cacheCahn, tnRight)
-		// 	Logg.Printf("%+v\n", tnRight)
-		// 	if tnRight == tnRight.RightChild {
-		// 		Logg.Printf("right child same:%v\n", tnRight)
-		// 		break
-		// 	}
-		// 	tnRight = tnRight.RightChild
-		// }
+		} 
 	}
 	return cacheCahn
 }
